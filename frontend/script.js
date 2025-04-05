@@ -78,5 +78,3 @@ async function editTask(id, currentText) {
 }
 
 fetchTasks();
-
-fetchTasks();
