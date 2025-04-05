@@ -6,7 +6,7 @@ async function fetchTasks() {
   const tasks = await res.json();
 
   const container = document.getElementById('task-container');
-  container.innerHTML = ''; // Clear the container before adding new tasks
+  container.innerHTML = '';
   tasks.forEach(task => {
     const div = document.createElement('div');
     div.className = 'task';
@@ -17,10 +17,8 @@ async function fetchTasks() {
     span.onclick = () => toggleComplete(task._id);
 
     const btnContainer = document.createElement('div');
-    btnContainer.className = 'task-buttons';
 
     const editBtn = document.createElement('button');
-    editBtn.className = 'edit-btn';
     editBtn.textContent = '✏️';
     editBtn.onclick = () => editTask(task._id, task.text);
 
@@ -34,14 +32,14 @@ async function fetchTasks() {
     div.appendChild(span);
     div.appendChild(btnContainer);
 
-    container.append(div); // Use append instead of appendChild.
+    container.append(div);
   });
 }
 
 async function addTask() {
   const input = document.getElementById('taskInput');
-  const text = input.value;
-  if (!text.trim()) return;
+  const text = input.value.trim();
+  if (!text) return;
 
   await fetch(BASE_URL, {
     method: 'POST',
@@ -68,15 +66,17 @@ async function deleteTask(id) {
 }
 
 async function editTask(id, currentText) {
-  const newText = prompt('Edit your task:', currentText);
-  if (newText && newText.trim() !== '') {
+  const newText = prompt("Edit your task:", currentText);
+  if (newText && newText.trim() !== "") {
     await fetch(`${BASE_URL}/${id}/update`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: newText })
+      body: JSON.stringify({ text: newText.trim() })
     });
     fetchTasks();
   }
 }
+
+fetchTasks();
 
 fetchTasks();
