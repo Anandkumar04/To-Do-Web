@@ -3,19 +3,19 @@ const Task = require("../models/Task");
 
 const router = express.Router();
 
-// ✅ Add Task to MongoDB
-router.post("/add", async (req, res) => {
+// Add a task
+router.post("/", async (req, res) => {
   try {
     const newTask = new Task({ text: req.body.text });
     await newTask.save();
-    res.status(201).json({ message: "Task added!" });
+    res.status(201).json(newTask);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// ✅ Get All Tasks from MongoDB
-router.get("/tasks", async (req, res) => {
+// Get all tasks
+router.get("/", async (req, res) => {
   try {
     const tasks = await Task.find();
     res.json(tasks);
@@ -24,8 +24,32 @@ router.get("/tasks", async (req, res) => {
   }
 });
 
-// ✅ Delete Task
-router.delete("/delete/:id", async (req, res) => {
+// Toggle complete
+router.put("/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    task.completed = !task.completed;
+    await task.save();
+    res.json(task);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Update task text
+router.put("/:id/update", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    task.text = req.body.text;
+    await task.save();
+    res.json(task);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Delete a task
+router.delete("/:id", async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);
     res.json({ message: "Task deleted!" });
