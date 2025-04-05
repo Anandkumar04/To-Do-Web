@@ -1,0 +1,85 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center; /* keep horizontal centering */
+    /* Remove align-items: center; */
+    background-image: linear-gradient(rgb(128, 172, 230), rgb(150, 230, 233));
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: flex-start; /* Place the container at the top */
+    padding-top: 50px; /* add padding if you want it to be a bit lower from the very top */
+  }
+  
+  .todo-container {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    width: 400px;
+  }
+  
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .input-section {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  #taskInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fafafa;
+  }
+  
+  .task-text {
+    flex: 1;
+    cursor: pointer;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+  
+  .task-buttons button {
+    margin-left: 5px;
+    background: #e74c3c;
+    padding: 5px 10px;
+  }
+  
+  .edit-btn {
+    background: #f39c12;
+  }
