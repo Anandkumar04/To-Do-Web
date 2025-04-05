@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const taskRoutes = require("./routes/taskRoutes");
+const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
@@ -20,4 +21,6 @@ mongoose.connect("mongodb+srv://Anand24:Anand24@cluster0.n5mskdu.mongodb.net/Tod
 
 app.use("/api/tasks", taskRoutes);
 
-app.listen(5000, () => console.log("Server running at http://localhost:5000"));
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on port ${PORT}`);
+});
