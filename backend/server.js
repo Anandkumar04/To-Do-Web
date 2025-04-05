@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/todolist', {
+mongoose.connect('mongodb+srv://Anand:Anand08@cluster0.n5mskdu.mongodb.net/Todo-app', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('MongoDB connected'))
@@ -51,4 +52,6 @@ app.delete('/api/tasks/:id', async (req, res) => {
   res.json({ message: 'Task deleted' });
 });
 
-app.listen(5000, () => console.log('Server running on http://localhost:5000'));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
