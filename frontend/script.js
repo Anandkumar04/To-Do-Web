@@ -1,5 +1,5 @@
 // const BASE_URL = 'https://todo-app-mini.onrender.com/api/tasks';
-const BASE_URL = 'http://localhost:5000/api/tasks';
+const BASE_URL = 'https://to-do-web-app-yass.onrender.com/api/tasks';
 
 async function fetchTasks() {
   const res = await fetch(BASE_URL);
