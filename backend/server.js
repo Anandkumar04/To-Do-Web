@@ -26,6 +26,7 @@ app.get('/api/tasks', async (req, res) => {
 });
 
 app.post('/api/tasks', async (req, res) => {
+  const { text } = req.body;
   const newTask = new Task({ text: req.body.text });
   await newTask.save();
   res.json(newTask);
